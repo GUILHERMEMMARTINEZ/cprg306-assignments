@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'next/link';  // Importação adicionada
+import Link from 'next/link'; 
 import NewItem from './new-item';
 import ItemList from './item-list';
 import itemsData from './items.json';

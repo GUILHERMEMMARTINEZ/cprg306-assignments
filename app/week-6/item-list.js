@@ -12,7 +12,7 @@ export default function ItemList({ items }) {
     } else if (sortBy === 'category') {
       return a.category.localeCompare(b.category);
     }
-    return 0; // default case, should not occur
+    return 0; 
   });
 
   const groupedItems = items.reduce((groups, item) => {
