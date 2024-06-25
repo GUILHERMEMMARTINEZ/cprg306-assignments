@@ -31,3 +31,42 @@ body {
     text-wrap: balance;
   }
 }
+.meal-ideas-container {
+  background-color: #1f2937;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.meal-list li {
+  background-color: #374151;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.meal-list li:hover {
+  background-color: #4b5563;
+}
+
+.selected-meal {
+  background-color: #374151;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+.selected-meal img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.selected-meal .list-disc {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.selected-meal .whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
