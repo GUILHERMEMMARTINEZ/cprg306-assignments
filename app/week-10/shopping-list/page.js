@@ -1,13 +1,13 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import NewItem from '../shopping-list/new-item';
-import ItemList from '../shopping-list/item-list';
-import MealIdeas from '../shopping-list/meal-ideas';
+import NewItem from './new-item';
+import ItemList from './item-list';
+import MealIdeas from './meal-ideas';
 import { useUserAuth } from '../_utils/auth-context';
 import { useRouter } from 'next/navigation';
 import { getItems, addItem, deleteItem } from '../_services/shopping-list-service';
-import SignInRequired from '../sign-in-required';
 
 export default function Page() {
   const [items, setItems] = useState([]);
@@ -16,27 +16,25 @@ export default function Page() {
   const router = useRouter();
 
   useEffect(() => {
-    const loadItems = async () => {
-      if (user) {
-        const items = await getItems(user.uid);
-        setItems(items);
-      }
-    };
+    if (user === undefined) {
+      return;
+    }
 
-    if (user) {
-      loadItems();
-    } else {
+    if (user === null) {
       router.push('/week-10/sign-in-required');
+    } else {
+      loadItems();
     }
   }, [user, router]);
 
-  if (user === undefined || user === null) {
-    return null;
-  }
+  const loadItems = async () => {
+    const userItems = await getItems(user.uid);
+    setItems(userItems);
+  };
 
   const handleAddItem = async (newItem) => {
-    const itemId = await addItem(user.uid, newItem);
-    setItems([...items, { id: itemId, ...newItem }]);
+    const newItemId = await addItem(user.uid, newItem);
+    setItems([...items, { id: newItemId, ...newItem }]);
   };
 
   const handleItemSelect = (item) => {
@@ -45,7 +43,9 @@ export default function Page() {
   };
 
   const handleDeleteItem = async (itemId) => {
+    console.log(`Attempting to delete item with ID: ${itemId}`);
     await deleteItem(user.uid, itemId);
+    console.log(`Item with ID: ${itemId} deleted from state`);
     setItems(items.filter(item => item.id !== itemId));
   };
 

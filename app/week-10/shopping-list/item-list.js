@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Item from './item';
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items, onItemSelect, onDeleteItem }) {
   const [sortBy, setSortBy] = useState('name');
 
   const sortedItems = [...items].sort((a, b) => {
@@ -52,14 +52,14 @@ export default function ItemList({ items, onItemSelect }) {
           <div key={category} className="mb-6">
             <h3 className="text-xl font-bold mb-2">{category}</h3>
             {groupedItems[category].map((item) => (
-              <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
+              <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} onDelete={onDeleteItem} />
             ))}
           </div>
         ))
       ) : (
         <ul className="space-y-2">
           {sortedItems.map((item) => (
-            <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} />
+            <Item key={item.id} {...item} onSelect={() => onItemSelect(item)} onDelete={onDeleteItem} />
           ))}
         </ul>
       )}

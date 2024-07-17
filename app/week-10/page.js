@@ -12,7 +12,7 @@ export default function Page() {
           <>
             <p>Welcome, {user.displayName} ({user.email})</p>
             <button onClick={firebaseSignOut} className="mt-4 px-4 py-2 bg-red-600 rounded-lg">Log Out</button>
-            <Link href="/week-8/shopping-list" className="mt-4 block text-blue-400 hover:text-blue-600">Go to Shopping List</Link>
+            <Link href="/week-10/shopping-list" className="mt-4 block text-blue-400 hover:text-blue-600">Go to Shopping List</Link>
           </>
         ) : (
           <>
